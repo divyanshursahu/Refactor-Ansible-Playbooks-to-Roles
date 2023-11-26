@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  vars:
+    "heading": "Application Landing Page"
+  tasks:
+
+    - name: Task 1 - Download demo.cpp
+      get_url:
+        url: https://raw.githubusercontent.com/demokplabsuser/demorepo/main/demo.cpp
+        dest: /home/labsuser/code/base-app-dir/binaries/demo.cpp
+
+    - name: Task 2 - Compile Application
+      ansible.builtin.command: g++ demo.cpp -o democode
+      args:
+        chdir:  /home/labsuser/code/base-app-dir/binaries/
+
+    - name: Task 3 - Run the Application
+      ansible.builtin.command: ./democode
+      args:
+        chdir: /home/labsuser/code/base-app-dir/binaries/
+
+    - name: Task 4 - Copy the Landing Page To Destination
+      ansible.builtin.template:
+        src: landing-page.j2
+        dest: /home/labsuser/code/base-app-dir/landing-page.html
+
