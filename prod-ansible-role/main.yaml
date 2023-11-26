@@ -1,0 +1,6 @@
+---
+- name: Configure Application
+  hosts: localhost
+  roles:
+    - base-app
+    - deploy-app

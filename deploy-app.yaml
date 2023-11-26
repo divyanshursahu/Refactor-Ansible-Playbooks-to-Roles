@@ -23,4 +23,3 @@
       ansible.builtin.template:
         src: landing-page.j2
         dest: /home/labsuser/code/base-app-dir/landing-page.html
-

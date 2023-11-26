@@ -1,0 +1,23 @@
+---
+- name: Task 1 - Configure Base Directory
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /home/labsuser/code/base-app-dir
+    - /home/labsuser/code/base-app-dir/binaries
+- name: Task 2 - Create System Information File for Ubuntu
+  ansible.builtin.file:
+    path: /home/labsuser/code/base-app-dir/os-info.txt
+    state: touch
+  when: ansible_os_family == "Debian"
+- name: Task 3 - Add Kernel Version to App System File for Debian
+  ansible.builtin.lineinfile:
+    path: /home/labsuser/code/base-app-dir/os-info.txt
+    line: Kernel Version of  Debian is "{{ ansible_kernel }}"
+- name: Task 4 - Copying file to remote system.
+  ansible.builtin.copy:
+    src: /home/labsuser/code/system.txt
+    dest: /home/labsuser/code/base-app-dir/system.txt
+  notify:
+    - Task 5 - Restart NTPD

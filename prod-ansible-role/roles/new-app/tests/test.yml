@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - /home/labsuser/code/prod-ansible-role/roles/new-app

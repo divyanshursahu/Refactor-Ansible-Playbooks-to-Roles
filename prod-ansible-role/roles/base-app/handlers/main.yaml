@@ -1,0 +1,3 @@
+- name: Task 5 - Restart NTPD
+  service: name=ntpd state=restarted
+  ignore_errors: true

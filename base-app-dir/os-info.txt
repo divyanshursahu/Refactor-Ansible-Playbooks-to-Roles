@@ -1,0 +1,1 @@
+Kernel Version of  Debian is "5.15.0-1047-aws"
